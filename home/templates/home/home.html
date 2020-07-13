@@ -4,14 +4,19 @@
 {% load socialaccount %}
 {% providers_media_js %}
 {% block content %}
-{{user}}
+
+{% if user.is_authenticated %}
+<div>Hello {{user.first_name}}</div>
+<a href="{% url 'logout' %}"> Logout </a>
+{% else %}
 <div class="container">
      
     <img src= 
     "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"
                 width="90" height="80" alt="" style="float: right;"> 
     <div class="login-form" style="float: left;">
-        <form action="/examples/actions/confirmation.php" method="post">
+        <form method="POST">
+            {% csrf_token %}
             <div class="justify-content-center">
     
                 <h2 class="justify-content-center">Login</h2>   
@@ -42,8 +47,6 @@
     </div>
    
 </div>
-
-   
-
+{% endif %}
 
 {% endblock content %}
