@@ -1,0 +1,49 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% load socialaccount %}
+{% providers_media_js %}
+{% block content %}
+{{user}}
+<div class="container">
+     
+    <img src= 
+    "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"
+                width="90" height="80" alt="" style="float: right;"> 
+    <div class="login-form" style="float: left;">
+        <form action="/examples/actions/confirmation.php" method="post">
+            <div class="justify-content-center">
+    
+                <h2 class="justify-content-center">Login</h2>   
+            </div>
+            
+            <div class="form-group">
+                <div class="input-group">
+                    
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="required">				
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">				
+                </div>
+            </div>        
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-success login-btn btn-block">Login</button>
+            </div>
+            <div class="text-center social-btn">
+                <a href="#" class="btn btn-outline-primary"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
+                
+                <a href="#" class="btn btn-outline-danger"><i class="fa fa-google"></i>&nbsp; Google</a>
+            </div>
+        </form>
+        <p class="text-center text-muted small">Don't have an account? <a href="{% url 'signup' %} ">Sign up here!</a></p>
+    </div>
+   
+</div>
+
+   
+
+
+{% endblock content %}

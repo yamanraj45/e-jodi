@@ -1,0 +1,81 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block content %}
+<div class="container">
+    <div class="Signup-form">
+        <form action="/examples/actions/confirmation.php" method="post">
+            {% csrf_token %}
+            <div class="justify-content-center">
+    
+                <h2 class="justify-content-center">Signup</h2>   
+            </div>
+            
+            <div class="form-group">
+                <div class="input-group">
+                    
+                    <input type="text" class="form-control mt-3" name="username" placeholder="Username" required="required">				
+                </div>
+                <div class="input-group">
+                    
+                    <input type="text" class="form-control mt-3" name="first_name" placeholder="First Name" required="required">				
+                </div>
+                <div class="input-group">
+                    
+                    <input type="text" class="form-control mt-3" name="last_name" placeholder="Last Name" required="required">				
+                </div>
+
+
+                <div class="input-group">
+                    
+                    <input type="email" class="form-control mt-3" name="email" placeholder="Enter Your Email" required="required">				
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="form-group">
+                
+
+                <div class="input-group">
+                    
+                    <input type="password" class="form-control mt-3" name="password1" placeholder="Password" required="required">				
+                </div>
+
+
+
+                <div class="input-group">
+                    
+                    <input type="password" class="form-control mt-3" name="password2" placeholder="Confirm Password" required="required">				
+                </div>
+
+
+
+            </div>        
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-success Signup-btn btn-block">Signup</button>
+            </div>
+            <div class="text-center social-btn">
+                <a href="{% provider_login_url 'facebook' method='oauth2' %}" class="btn btn-outline-primary"><i class="fa fa-facebook"></i>&nbsp; Facebook</a>
+                
+                <a href="#" class="btn btn-outline-danger"><i class="fa fa-google"></i>&nbsp; Google</a>
+            </div>
+        </form>
+        <p class="text-center text-muted small">Have an account? <a href="{% url 'index'  %}""  >Login here!</a></p>
+    </div>
+    
+
+</div>
+
+   
+
+
+{% endblock content %}
