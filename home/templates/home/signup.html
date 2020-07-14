@@ -15,15 +15,7 @@
     {% endfor %}
 </ul>
 {% endif %}
-{% if messagecheck %}
-<ul style="text-decoration: none;" class=" messages ">
-    {% for message in messagecheck %}
-    <li      {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>
-        {{ message }}
-    </li>
-    {% endfor %}
-</ul>
-{% endif %}
+
     <div class="Signup-form">
         <form  method="POST">
             {% csrf_token %}

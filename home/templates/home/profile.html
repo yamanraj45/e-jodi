@@ -1,0 +1,51 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+    <h2 style="text-align:center">Profile</h2>
+    
+    <div class="card">
+      <img src="/w3images/team2.jpg" alt="{{user.first_name}} Image" style="width:100%">
+      <h1>{{user.first_name}}
+      </h1>
+      Works At: <p class="title">CEO & Founder, Example</p>
+      Studied At: <p>Harvard University</p>
+      <div style="margin: 24px 0;">
+        <hr>
+        <a href="#"><i class="fa fa-dribbble"></i></a> 
+        <a href="#"><i class="fa fa-twitter"></i></a>  
+        <a href="#"><i class="fa fa-linkedin"></i></a>  
+        <a href="#"><i class="fa fa-facebook"></i></a> 
+        
+      </div>
+      
+    </div>
+<style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+    }
+    
+    .title {
+      color: grey;
+      font-size: 18px;
+    }
+    
+    
+    
+    a {
+      text-decoration: none;
+      font-size: 22px;
+      color: black;
+    }
+    
+    button:hover, a:hover {
+      opacity: 0.7;
+    }
+    </style>
+{% endblock content %}

@@ -10,7 +10,7 @@ def index(request):
             auth.login(request,user)
             return redirect('/')
         else:
-            messages.error(request,'Invalid Syntax')
+            messages.warning(request,'Invalid Syntax')
             return redirect('/')
     else:
         return render(request,'home/home.html')
@@ -36,6 +36,7 @@ def signup(request):
                 user = User.objects.create_user(username=username,first_name=first_name,last_name=last_name,email=email,password=pass1)
                 user.save()
                 messages.success(request,"UserCreated")
+                return redirect('/')
             return redirect('signup')   
         else:
             messages.error(request,'Password Didnot Matched')
@@ -50,3 +51,7 @@ def signup(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
+def profile(request):
+    return render(request,'home/profile.html')
