@@ -25,25 +25,22 @@
  
   
 <nav class="navbar navbar-fixed navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#">Ejodi</a>
-    <button class="navbar-toggler btn-danger" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon btn-outline-danger"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <a class="navbar-brand" href="{% url 'index' %}" >Ejodi</a>
+    
       <ul class="navbar-nav mr-auto">
+        
         
       </ul>
       <div class="form-inline my-2 my-lg-0 p-2">
         <a href="{% url 'profile' %}" class="btn btn-outline-danger mr-2 my-sm-0"><span class="fa fa-user"> </span></a><br>
-        <a href="" class="btn btn-outline-danger mr-2 my-sm-0"><span class="fa fa-bell"> </span></a><br>
+        <a href="" class="btn btn-outline-danger mr-2 my-sm-0"><span class="fa fa-envelope"> </span></a><br>
         <a href="{% url 'notification' %}" class="btn btn-outline-danger mr-2 my-sm-0"><span class="fa fa-newspaper-o"> </span></a><br>
         <a href="{% url 'logout' %}" class="btn btn-outline-danger mr-2 my-sm-0"><span class="fa fa-sign-out"> </span></a>
         
       </div>
-    </div>
+    
   </nav>
-
+<hr>
 
 
 {% else %}

@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from . import models
+
+
+myModels = [ models.UserProfile, models.Like,models.Ignore]  
+admin.site.register(myModels)
+

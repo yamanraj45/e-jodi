@@ -1,7 +1,25 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import auth,User
 from django.contrib import messages
+from .models import UserProfile
+from django.contrib.gis.geoip2 import GeoIP2
+
+from .models import UserProfile
+
+
+
+
+
+
 def index(request):
+    g = GeoIP2()
+    locationdetail = g.country('113.199.168.246')
+    userdetail = UserProfile.objects.all()
+    context ={
+        "location":locationdetail,
+        'userprofiles':userdetail
+    }
+    UserProfile.location = locationdetail
     if request.method=='POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -13,7 +31,12 @@ def index(request):
             messages.warning(request,'Invalid Syntax')
             return redirect('/')
     else:
-        return render(request,'home/home.html')
+        return render(request,'home/home.html', context)
+
+
+
+
+
 
 
 def signup(request):
@@ -48,10 +71,54 @@ def signup(request):
 
 
 
+
+
+
 def logout(request):
     auth.logout(request)
     return redirect('/')
 
 
+
+
+
+
+
 def profile(request):
-    return render(request,'home/profile.html')
+    
+    
+    if UserProfile.objects.filter(user=request.user).exists():
+        userdetail = UserProfile.objects.get(user =request.user)
+    
+        context ={
+        
+        'userprofile': userdetail
+        }
+        return render(request,'home/profile.html',context)
+    else:
+        return redirect('updateuserprofile')
+    return redirect('index')
+
+
+def updateuserprofile(request):
+    if UserProfile.objects.filter(user=request.user).exists():
+        userdetail = UserProfile.objects.get(user =request.user)
+    
+        context ={
+        
+        'userprofile': userdetail
+        }
+        return render(request,'home/update.html',context)
+    else:
+        if request.method == 'POST' and request.FILES['myfile']:
+            myfile = request.FILES['myfile']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            uploaded_file_url = fs.url(filename)
+            return render(request, 'core/simple_upload.html', {
+                'uploaded_file_url': uploaded_file_url
+            })
+        else:
+            return render(request,'home/update.html')
+    return redirect('index')
+    

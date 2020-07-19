@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
+    'crispy_forms',
+    'notification'
     
 ]
 
@@ -130,3 +132,9 @@ STATIC_URL = '/static/'
 SITE_ID = 2
 
 LOGIN_REDIRECT_URL = '/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+GEOIP_PATH = 'geoip'
+
+CRISPY_TEMPLATE_PACK ='bootstrap4'

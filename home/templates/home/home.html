@@ -13,43 +13,136 @@
 
 
 {% if user.is_authenticated %}
+
 <style>
-    div.show-image {
-    position: relative;
+    #person_image{
+    background-repeat: repeat-x;    
+    margin-left: 5%;
+    margin-top: 10%;
     
-    margin:5px;
 }
-div.show-image:hover img{
-    opacity:0.5;
+
+#person_image .but1{    
+   
+    line-height: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right:1%;
+    display:inline-block;
+    position:relative;
 }
-div.show-image input {
+
+#person_image .btn1 {
     position:absolute;
-    
+    bottom: 5%;
+    left: 5%;
 }
-div.show-image button.like {
-    bottom:0;
-    left:0;
-}
-div.show-image button.ignore {
-    bottom:0;
-    left:50%;
+
+
+#person_image .btn2 {
+    position:absolute;
+    bottom: 5%;
+    right: 5%;
 }
 </style>
+{% for userprofile in userprofiles %}
 
-    <div class="container show-image" >
 
-        <div class="show-image">
-            <img class="thumbnail" src="http://taditdash.files.wordpress.com/2014/01/tadit-dash.jpg" width="100%" height="80%" />
-            <button class="like btn btn-outline-danger"><span class="fa fa-heart"></span></button>
-            <button class="ignore btn btn-warning"><span class="fa fa-remove"></span></button>
+<div class="container card mt-5 pt-6">
+    <div class="row ">
+        <div class="col-md-6">
+            
+
+<div id="person_image">
+<div class="but1">
+<!--Card image-->
+<img class="img-fluid" src="{{ userprofile.avatar.url }}" alt="Test Image">
+<!--/.Card image-->
+<a onclick="liked()" class="btn btn1 btn-floating btn-danger"><i class="fa fa-heart"></i></a>
+<a onclick="ignored()" class="btn btn2 btn-floating btn-warning"><i class="fa fa-remove"></i></a>
+</div>
+</div>
+
+
+
         </div>
-    </div>
+        <div class="card-body">
+<div class="col-12 card-title">
+  <h4> <b> {{ userprofile.user.first_name }} {{ userprofile.user.last_name }}</b></h4>
+    
+
+</div>
+<p class="card-text">{{ userprofile.bio }}</p><br>
+<p class="card-text">{{ userprofile.location }}</p>
+
+</div>
+</div>
+</div>
 
 
- 
+
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% else %}
 
-    
+    <!-- This is when user is not is_authenticated -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container">
      
     <img src= "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"
@@ -110,7 +203,14 @@ div.show-image button.ignore {
       } else {
         x.type = "password";
       }
+    }
+
+    function liked(){
+        console.log("Liked")
     } 
+    function ignored(){
+        console.log("Ignored")
+    }
     </script>
     
 {% endblock content %}

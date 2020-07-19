@@ -3,15 +3,17 @@
 
 {% block content %}
 
-
+  
     <h2 style="text-align:center">Profile</h2>
     
     <div class="card">
-      <img src="/w3images/team2.jpg" alt="{{user.first_name}} Image" style="width:100%">
-      <h1>{{user.first_name}}
-      </h1>
-      Works At: <p class="title">CEO & Founder, Example</p>
-      Studied At: <p>Harvard University</p>
+      
+      <img src="{{ userprofile.avatar.url }}" alt="{{ user.first_name }} Image" style="width:100%">
+      <h1>{{user.username}}
+      </h1> <a href="" style="float: left;" class="btn"><span class="fa fa-edit"></span></a>
+      
+      <p>Bio: {{ userprofile.bio }}</p>
+      <p>Location: {{ userprofile.location }}</p>
       <div style="margin: 24px 0;">
         <hr>
         <a href="#"><i class="fa fa-dribbble"></i></a> 
@@ -22,6 +24,12 @@
       </div>
       
     </div>
+    <form id="update_user_form" method="POST" enctype="multipart/form-data">
+
+      {% csrf_token %}
+      <input type="file" name="image"  placeholder="Bio">
+      <input type="submit">
+    </form>
 <style>
     .card {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
