@@ -1,14 +1,51 @@
 {% extends "home/base.html" %}
-
+{% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
 
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <input type="file" name="myfile">
-  <button type="submit">Upload</button>
-</form>
+<div class="container">
+  <b> <h3>{{ title }}</h3></b>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    
 
+<div id="div_id_age" class="form-group"> <label for="id_age" class="">
+                <b>Age </b>
+            </label> <div class=""> <input type="number" name="age" value='{{ userprofile.age }}' class="numberinput form-control" id="id_age"> </div> </div> 
+            {% if userprofile.gender %}
+            <div></div>
+            {% else %}
+            <div id="div_id_gender" class="form-group"> <label for="id_gender" class="">
+
+                <b> Gender</b>
+            </label> <div class=""> <select name="gender" class="select form-control" id="id_gender"> <option value="" selected> {% if userprofile.gender %}  {{userprofile.gender}} {% else %} Select Your Gender {% endif %} </option> <option value="Male">Male</option> <option value="Female">Female</option> <option value="Other">Other</option> <option value="Prefer Not To Say">Prefer Not To Say</option>
+
+</select> </div> </div>
+
+{% endif %}
+{% if userprofile.avatar %}
+<div></div>
+{% else %}
+ <div id="div_id_avatar" class="form-group"> <label for="id_avatar" class="">
+  <b>Choose Your Profile Picture </b>
+            </label> <div class=""> <input type="file" name="avatar" accept="image/*" class="clearablefileinput form-control-file"  id="id_avatar"> </div> </div>
+{% endif %}
+            
+            <div id="div_id_bio" class="form-group"> <label for="id_bio" class="">
+               <b>Bio</b>
+            </label> <div class=""> <input type="text" value="{{ userprofile.bio }}" name="bio" maxlength="150" class="textinput textInput form-control" id="id_bio"> </div> </div> <div id="div_id_location" class="form-group"> <label for="id_location" class="">
+                <b>Location</b>
+            </label> <div class=""> <input type="text" name="location" value="{{ userprofile.location }}" maxlength="200" class="textinput textInput form-control" id="id_location"> </div> </div> <div id="div_id_hobby" class="form-group"> <label for="id_hobby" class="">
+                <b>Hobby</b>
+            </label> <div class=""> <input type="text" name="hobby" value="{{ userprofile.hobby }}" maxlength="200" class="textinput textInput form-control" id="id_hobby"> </div> </div>
+
+   
+    <button class="btn btn-success" type="submit">Submit</button>
+  </form>
+  
+
+</div>
 
 
 {% endblock content %}

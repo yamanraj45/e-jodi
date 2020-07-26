@@ -48,6 +48,10 @@
 {% for userprofile in userprofiles %}
 
 
+<!-- Remove Superuser From Home Page -->
+{% if userprofile.user.first_name and userprofile.user.last_name and userprofile.user.email %}  
+<form method="POST">
+    {% csrf_token %}
 <div class="container card mt-5 pt-6">
     <div class="row ">
         <div class="col-md-6">
@@ -58,8 +62,8 @@
 <!--Card image-->
 <img class="img-fluid" src="{{ userprofile.avatar.url }}" alt="Test Image">
 <!--/.Card image-->
-<a onclick="liked()" class="btn btn1 btn-floating btn-danger"><i class="fa fa-heart"></i></a>
-<a onclick="ignored()" class="btn btn2 btn-floating btn-warning"><i class="fa fa-remove"></i></a>
+<button onclick="liked()" id='like' class="btn btn1 btn-floating btn-danger"><i class="fa fa-heart"></i></a>
+<button onclick="ignored()" class="btn btn2 btn-floating btn-warning"><i class="fa fa-remove"></i></a>
 </div>
 </div>
 
@@ -79,8 +83,8 @@
 </div>
 </div>
 
-
-
+</form>
+{% endif %}
 {% endfor %}
 
 
@@ -167,7 +171,7 @@
             <div class="form-group">
                 <div class="input-group">
                     
-                    <input type="text" class="form-control" name="username" placeholder="Username" required="required">				
+                    <input type="text"  class="form-control" name="username" placeholder="Username" required="required">				
                 </div>
             </div>
             <div class="form-group">
@@ -205,19 +209,23 @@
       }
     }
 
-    function liked(){
-        console.log("Liked")
-    } 
-    function ignored(){
-        console.log("Ignored")
-    }
+    $(function() {
+  $("like").on("click",function(e) {
+    e.preventDefault(); // cancel the link itself
+    $.post(this.href,function(data) {
+      $("#someContainer").html(data);
+    });
+  });
+});
+    
     </script>
     
 {% endblock content %}
 
 
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
